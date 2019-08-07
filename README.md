@@ -22,7 +22,7 @@ In order to protect the resource of java app and the security strategy is always
 
 In this tutorial I only use the Client Credentials Crant method to security the Java application with oauth 2.0.
 
-Two steps are needed in the following tutorial.  Create a java application and register a client.
+Three steps are needed in the following tutorial.  Create a java application, create a scope for apps and register a oauth client.
 ### Create a java application and deploy in the neo environment
 #### 1. create a helloworld java app
 Please following the tutorial guide in the offical guide. [create a hello world application.](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/e5a8b1d3bb571014a0f89bb4706d4e0b.html)
