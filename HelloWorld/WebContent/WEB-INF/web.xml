@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<login-config>
+		<auth-method>OAUTH</auth-method>
+	</login-config>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Protected Area</web-resource-name>
+			<url-pattern>/rest/get-photos</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<!-- Role Everyone will not be assignable -->
+			<role-name>Everyone</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-role>
+		<description>All SAP Cloud Platform users</description>
+		<role-name>Everyone</role-name>
+	</security-role>
+	
+    <servlet>
+		<servlet-name>Hello</servlet-name>
+		<servlet-class>com.sap.Hello</servlet-class>
+	</servlet>
+
+	<filter>
+	    <display-name>OAuth scope definition for hello</display-name>
+	    <filter-name>OAuthHelloScopeFilter</filter-name>
+	    <filter-class>
+	      com.sap.cloud.security.oauth2.OAuthAuthorizationFilter
+	    </filter-class>
+	  <init-param>
+	    <param-name>scope</param-name>
+	    <param-value>hello</param-value>
+	  </init-param>
+	      <init-param>
+	    <param-name>no-session</param-name>
+	    <param-value>false</param-value>
+	  </init-param>
+	</filter>
+	
+	<filter-mapping>
+ 	   <filter-name>OAuthHelloScopeFilter</filter-name>
+ 	   <url-pattern>/hello</url-pattern>
+	</filter-mapping>
+	
+<!-- 	<filter-mapping>  
+          <filter-name>OAuthPublishJobScopeFilter</filter-name>  
+          <url-pattern>/multi-posting/sf/post2Wechat</url-pattern>  
+       </filter-mapping> -->
+</web-app>
