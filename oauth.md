@@ -1,3 +1,21 @@
+<!-- TOC -->
+
+- [Create a oauth 2.0 security for java application in SAP Cloud Platform Neo Environment](#create-a-oauth-20-security-for-java-application-in-sap-cloud-platform-neo-environment)
+    - [Create a java application and deploy in the neo environment](#create-a-java-application-and-deploy-in-the-neo-environment)
+        - [1. create a helloworld java app](#1-create-a-helloworld-java-app)
+        - [2. Create a web.xml and enable auth configuration](#2-create-a-webxml-and-enable-auth-configuration)
+        - [3. Deploy the app in the neo cloud](#3-deploy-the-app-in-the-neo-cloud)
+        - [4. Go the hello page](#4-go-the-hello-page)
+    - [Register a client in the neo environment](#register-a-client-in-the-neo-environment)
+        - [1. Open the cockpit and go to security](#1-open-the-cockpit-and-go-to-security)
+        - [2. Register New client](#2-register-new-client)
+    - [Create a Scope in the Java Application](#create-a-scope-in-the-java-application)
+    - [Test with postman](#test-with-postman)
+        - [1. Get the OAuth urls](#1-get-the-oauth-urls)
+        - [2. Create a post request in the postman](#2-create-a-post-request-in-the-postman)
+        - [3. Use the token in authorization header](#3-use-the-token-in-authorization-header)
+
+<!-- /TOC -->
 ## Create a oauth 2.0 security for java application in SAP Cloud Platform Neo Environment
 
 In order to protect the resource of java app and the security strategy is always required in the productive environment.
