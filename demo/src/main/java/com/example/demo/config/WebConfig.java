@@ -7,16 +7,27 @@ import com.sap.cloud.security.oauth2.OAuthAuthorizationFilter;
 
 @Configuration
 public class WebConfig {
+	private int filterOrder = 1;
 	@Bean
-	public FilterRegistrationBean<OAuthAuthorizationFilter> oauthFilterRegistration() {
-		FilterRegistrationBean<OAuthAuthorizationFilter> registrationBean = new FilterRegistrationBean<OAuthAuthorizationFilter>();
-		registrationBean.setFilter(new OAuthAuthorizationFilter());
-		registrationBean.addUrlPatterns("/hello");
-		registrationBean.addInitParameter("scope", "hello");
-		registrationBean.addInitParameter("http-method", "get");
-		registrationBean.addInitParameter("no-session", "true");
-		registrationBean.setOrder(1);
-		return registrationBean;
+	public FilterRegistrationBean registerOperateScope() {
+		return getOAuthFilterRegistration("hello", "HelloScopeFilter", "/hello/*");
+	}
+	
+	@Bean
+	public FilterRegistrationBean registerBillsScope() {
+		return getOAuthFilterRegistration("hi", "HiScopeFilter", "/hi/*");
+	}
+
+	private FilterRegistrationBean getOAuthFilterRegistration(String scope, String name, String... urlPatterns) {
+		FilterRegistrationBean registration = new FilterRegistrationBean();
+		registration.setFilter(new OAuthAuthorizationFilter());
+		registration.addUrlPatterns(urlPatterns);
+		registration.addInitParameter("scope", scope);
+		registration.addInitParameter("no-session", "true");
+		registration.addInitParameter("user-principal", "yes");
+		registration.setName(name);
+		registration.setOrder(filterOrder++);
+		return registration;
 	}
 
 }
